@@ -1,7 +1,7 @@
 import tkinter as tk
 
 class App:
-    def init(self, root):
+    def __init__(self, root):
         #setting title
         root.title("chat")
         #setting window size
@@ -15,7 +15,7 @@ class App:
 
         connectBut=tk.Button(root)
         connectBut["justify"] = "center"
-        connectBut["text"] = "Connect"
+        connectBut["text"] = "Forbind"
         connectBut.place(x=10,y=110,width=140,height=30)
         connectBut["command"] = self.connectBut_command
 
@@ -47,7 +47,7 @@ class App:
         self.chatInputBut["command"] = self.chatInputBut_command
 
         ipLabel=tk.Label(root)
-        ipLabel["text"] = "Ip Adress"
+        ipLabel["text"] = "IP Address"
         ipLabel.place(x=0,y=0,width=70,height=25)
 
         portLabel=tk.Label(root)
@@ -56,28 +56,28 @@ class App:
 
 
 
-        def connectBut_command(self):
-            print("server aflyt connect")
-            self.ip = self.ipAdress.get()
-            self.port = self.port.get()
+    def connectBut_command(self):
+        print("server aflyt connect")
+        self.ip = self.ipAdress.get()
+        self.port = self.port.get()
 
-        def scrollDown(self):
-            if self.chatWindow.size() == 27:
-                self.chatWindow.delete(0)
+    def scrollDown(self):
+        if self.chatWindow.size() == 27:
+            self.chatWindow.delete(0)
 
-        def chatInputBut_command(self):
-            if self.chatInput.get():
-                print(self.chatInput.get())
-                self.chatWindow.insert("end",("Me: ", self.chatInput.get()))
-                # Skriv komando til at sende til server her
-                self.chatInput.delete(0, 'end')
-                self.scrollDown()
-
-        def remoteInput(self, remoteIP, input):
-            self.chatWindow.insert("end", (remoteIP, ": ", input))
+    def chatInputBut_command(self):
+        if self.chatInput.get():
+            print(self.chatInput.get())
+            self.chatWindow.insert("end",("Me: ", self.chatInput.get()))
+            # Skriv komando til at sende til server her
+            self.chatInput.delete(0, 'end')
             self.scrollDown()
 
-if name == "main":
-    root = tk.Tk()
-    app = App(root)
-    root.mainloop()
+    def remoteInput(self, remoteIP, input):
+        self.chatWindow.insert("end", (remoteIP, ": ", input))
+        self.scrollDown()
+
+
+root = tk.Tk()
+app = App(root)
+root.mainloop()

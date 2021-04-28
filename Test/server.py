@@ -60,7 +60,6 @@ class klient:
 
         if besked.decode().split(' ', 1)[0] == "!brugernavn":
             self.brugernavn = besked.decode().split(' ', 1)[1]
-
             return True
     
         return False
