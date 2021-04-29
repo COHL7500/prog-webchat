@@ -3,6 +3,7 @@ import socket, threading
 HOST = ''
 PORT = 12345
 KLIENTER = []
+
 SOCK = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 SOCK.bind((HOST, PORT))
 SOCK.listen(5)
@@ -98,9 +99,6 @@ class klient:
             return True
         
         if besked.decode().split(' ', 1)[0] == "!brugernavn":
-<<<<<<< Updated upstream
-            self.brugernavn = besked.decode().split(' ', 1)[1]
-=======
             nyt_brugernavn = besked.decode().split(' ', 1)[1]
 
             for klnt in KLIENTER:
@@ -109,7 +107,6 @@ class klient:
                 
             self.brugernavn = nyt_brugernavn;
 
->>>>>>> Stashed changes
             return True
     
         return False
