@@ -1,4 +1,5 @@
 import socket, threading
+from Crypto.Cipher import AES
 
 HOST = ''
 PORT = 12345
@@ -27,6 +28,11 @@ class klient:
 
     def __del__(self):
         self.thread.should_abort_immediately = True
+
+    def do_decrypt(self, ciphertext):
+        obj2 = AES.new('key123', AES.MODE_CBC, 'IV456')
+        ciphertext = obj2.decrypt(ciphertext)
+        return ciphertext
     
     def klient_aflytter(self):
         while True:
@@ -39,8 +45,9 @@ class klient:
                 break
 
             if not self.klient_kommandoer(data):
-                print(self.brugernavn, self.addr, " >> ", data.decode())
-                self.broadcast("\n" + self.brugernavn + " >> " + data.decode())
+                data_decrypt = do_decrypt(data.decode())
+                print(self.brugernavn, self.addr, " >> ", data_decrypt)
+                self.broadcast("\n" + self.brugernavn + " >> " + data_decrypt)
 
         KLIENTER.remove(self)
         del self

@@ -3,10 +3,15 @@ import socket, threading, time
 HOST = '0.0.0.0' #'176.23.70.52'
 PORT = 27015
 SERVER_ALIVE = False
-
 SOCK = socket.socket()
 SOCK.connect((HOST, PORT))
-SOCK.sendto(("!brugernavn " + input("Vælg brugernavn: ")).encode(), (HOST, PORT))
+
+def do_encrypt(message):
+    obj = AES.new('key123'), AES.MODE_CBC, 'IV456')
+    message = obj.encrypt(message)
+    return message
+
+SOCK.sendto(("!brugernavn " + do_encrypt(input("Vælg brugernavn: ")).encode()), (HOST, PORT))
 
 class server:
     def __init__(self):
@@ -45,6 +50,6 @@ while True:
         break
     
     elif(SERVER_ALIVE):
-        SOCK.sendto(data.encode(), (HOST, PORT))
+        SOCK.sendto(do_encrypt(data.encode()), (HOST, PORT))
 
 SOCK.close()
