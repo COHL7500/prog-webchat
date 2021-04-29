@@ -1,7 +1,7 @@
 import socket, threading, time
 
-HOST = '0.0.0.0' #'176.23.70.52'
-PORT = 27015
+HOST = '127.0.0.1' #'176.23.70.52'
+PORT = 12345
 SERVER_ALIVE = False
 
 SOCK = socket.socket()
